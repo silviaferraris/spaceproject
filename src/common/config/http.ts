@@ -1,8 +1,8 @@
-import axios from "axios";
-import { store } from "../store/store";
+/* import axios from "axios";
+import { store } from "../../store/store";
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: "http://localhost:3000/",
   timeout: 3000,
 });
 
@@ -25,3 +25,4 @@ instance.interceptors.request.use(
 );
 
 export default instance;
+ */

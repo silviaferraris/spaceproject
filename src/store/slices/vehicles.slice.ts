@@ -1,4 +1,4 @@
-import { createSlice } from "@reduxjs/toolkit";
+/* import { createSlice } from "@reduxjs/toolkit";
 import { vehiclesService } from "../../services/vehicles.service";
 
 interface VehiclesState {
@@ -46,3 +46,4 @@ export function getAllVehicles() {
     }
   };
 }
+ */

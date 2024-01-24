@@ -1,6 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { authService } from '../../services/auth.service';
-
+/* import { createSlice } from "@reduxjs/toolkit";
+import { authService } from "../../services/auth.service";
 export interface User {
   profile: {
     id: string;
@@ -28,7 +27,7 @@ const initialState: AuthState = {
 };
 
 export const authSlice = createSlice({
-  name: 'authSlice',
+  name: "authSlice",
   initialState,
   reducers: {
     loginSuccess: (state, actions) => {
@@ -66,7 +65,7 @@ export function login(data: any) {
 
         dispatch(loginSuccess(JSON.stringify(payload)));
       } else {
-        console.log('error');
+        console.log("error");
         dispatch(loginFailure());
       }
     } catch (e) {
@@ -82,3 +81,4 @@ export function logout() {
     dispatch(logout);
   };
 }
+ */

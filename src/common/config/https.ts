@@ -1,8 +1,8 @@
-import axios from 'axios';
-import { store } from '../../store/store';
+/* import axios from "axios";
+import { store } from "../../store/store";
 
 const instance = axios.create({
-  baseURL: process.env.REACT_APP_API_URL,
+  baseURL: "http://localhost:3000/",
   timeout: 3000,
 });
 
@@ -15,13 +15,14 @@ const headerIsRequired = true;
 instance.interceptors.request.use(
   (config) => {
     if (headerIsRequired) {
-      config.headers['Authorization'] = `Bearer ${getToken()}`;
+      config.headers["Authorization"] = `Bearer ${getToken()}`;
     }
     return config;
   },
   (error) => {
     return Promise.reject(error);
-  },
+  }
 );
 
 export default instance;
+ */
