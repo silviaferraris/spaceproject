@@ -53,6 +53,7 @@ function Sidebar() {
           sx={{
             "& .MuiPaper-root": {
               borderRadius: "0 !important",
+              backgroundColor: "#000", // Cambia il colore di sfondo a nero
             },
           }}
         >
@@ -62,7 +63,7 @@ function Sidebar() {
                 fontSize: "20px",
                 lineHeight: "24px",
                 fontWeight: "bold",
-                color: "#4C4E64DE",
+                color: "#fff", // Cambia il colore del testo a bianco
                 padding: 0,
               }}
             >
@@ -92,10 +93,6 @@ interface MenuItemProps {
   menuItem: MenuItemInterface;
 }
 
-interface MenuItemProps {
-  menuItem: MenuItemInterface;
-}
-
 function MenuItem({ menuItem }: MenuItemProps) {
   return (
     <div>
@@ -106,7 +103,14 @@ function MenuItem({ menuItem }: MenuItemProps) {
         }}
       >
         <ListItemButton
-          sx={{ padding: "8px 12px 8px 16px", borderRadius: "8px" }}
+          sx={{
+            padding: "8px 12px 8px 16px",
+            borderRadius: "8px",
+            color: "#fff", // Cambia il colore del testo a bianco
+            "&:hover": {
+              backgroundColor: "#333", // Cambia il colore di sfondo al passaggio del mouse
+            },
+          }}
         >
           <ListItemText
             primary={menuItem.label}

@@ -21,22 +21,22 @@ function BaseLayout({ child, options, title }: BaseLayoutProps) {
   return (
     <Box
       sx={{
-        backgroundColor: "white",
         height: "100vh",
         width: "100vw",
         maxWidth: "100vw",
         display: "flex",
         flex: 1,
         flexDirection: "row",
-        overflow: "hidden",
+        overflow: "auto",
       }}
     >
-      <Sidebar />
+      <Sidebar></Sidebar>
       <Box
         sx={{
+          backgroundImage: "url('/images/background.jpg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
           flex: 1,
-          height: "100vh",
-          maxHeight: "100vh",
           display: "flex",
           flexDirection: "column",
           padding: "0 30px 20px 30px",
