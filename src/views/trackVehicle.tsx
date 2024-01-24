@@ -1,27 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Box,
   Button,
-  TextField,
+  CircularProgress,
+  Paper,
   Typography,
-  Grid,
-  InputAdornment,
 } from "@mui/material";
-import { useForm, SubmitHandler, Controller } from "react-hook-form";
-import SearchIcon from "@mui/icons-material/Search";
 import BaseLayout from "../components/BaseLayout";
 
-interface FormValues {
+interface VehicleInfo {
   name: string;
-  mission: string;
+  id: number;
+  latitude: number;
+  longitude: number;
+  altitude: number;
+  velocity: number;
+  visibility: string;
+  footprint: number;
+  timestamp: number;
+  daynum: number;
+  solar_lat: number;
+  solar_lon: number;
+  units: string;
 }
 
 function TrackVehicle() {
-  const { handleSubmit, control } = useForm<FormValues>();
+  const [loading, setLoading] = useState(false);
+  const [vehicleInfo, setVehicleInfo] = useState<VehicleInfo | null>(null);
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    // Gestisci la logica per l'inserimento del veicolo qui
-    console.log(data);
+  const handleTrackVehicle = async () => {
+    setLoading(true);
+    try {
+      const response = await fetch(
+        "https://api.wheretheiss.at/v1/satellites/25544"
+      );
+      const result = await response.json();
+      setVehicleInfo(result);
+    } catch (error) {
+      console.error("Error fetching vehicle information", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   return (
@@ -29,7 +48,7 @@ function TrackVehicle() {
       child={
         <Box
           p={2}
-          bgcolor="white"
+          bgcolor="transparent"
           boxShadow={4}
           maxWidth="400px"
           borderRadius={4}
@@ -37,44 +56,48 @@ function TrackVehicle() {
           mt={4}
           ml={4}
         >
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
-                <Controller
-                  name="name"
-                  control={control}
-                  rules={{ required: "Name is required" }}
-                  render={({ field, fieldState }) => (
-                    <TextField
-                      {...field}
-                      label="Vehicle Name"
-                      fullWidth
-                      variant="outlined"
-                      error={!!fieldState.error}
-                      helperText={
-                        fieldState.error ? fieldState.error.message : null
-                      }
-                      sx={{ borderRadius: 8 }}
-                    />
-                  )}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <Button
-                  type="submit"
-                  variant="contained"
-                  color="primary"
-                  fullWidth
-                  sx={{ borderRadius: 8 }}
-                >
-                  Track vehicle
-                </Button>
-              </Grid>
-            </Grid>
-          </form>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleTrackVehicle}
+            disabled={loading}
+            sx={{ backgroundColor: "#4C4E64DE" }}
+          >
+            Track now
+          </Button>
+
+          {loading && <CircularProgress sx={{ mt: 2, color: "#4C4E64DE" }} />}
+
+          {vehicleInfo && (
+            <Paper
+              elevation={3}
+              sx={{
+                mt: 2,
+                p: 2,
+                borderRadius: 4,
+                backgroundColor: "#1F1F1F",
+              }}
+            >
+              <Typography variant="h6" sx={{ color: "#4C4E64DE" }}>
+                International Space Station
+              </Typography>
+              <Typography sx={{ color: "#A3AED0" }}>
+                Latitude: {vehicleInfo.latitude.toFixed(4)}
+              </Typography>
+              <Typography sx={{ color: "#A3AED0" }}>
+                Longitude: {vehicleInfo.longitude.toFixed(4)}
+              </Typography>
+              <Typography sx={{ color: "#A3AED0" }}>
+                Altitude: {vehicleInfo.altitude.toFixed(2)} km
+              </Typography>
+              <Typography sx={{ color: "#A3AED0" }}>
+                Velocity: {vehicleInfo.velocity.toFixed(2)} km/h
+              </Typography>
+            </Paper>
+          )}
         </Box>
       }
-      title={"Track your space vehicle"}
+      title={"Track the International Space Station"}
     />
   );
 }
