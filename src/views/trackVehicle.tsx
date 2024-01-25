@@ -3,6 +3,7 @@ import {
   Box,
   Button,
   CircularProgress,
+  Grid,
   Paper,
   Typography,
 } from "@mui/material";
@@ -56,15 +57,26 @@ function TrackVehicle() {
           mt={4}
           ml={4}
         >
-          <Button
-            variant="contained"
-            color="primary"
-            onClick={handleTrackVehicle}
-            disabled={loading}
-            sx={{ backgroundColor: "#4C4E64DE" }}
-          >
-            Track now
-          </Button>
+          <Grid container spacing={2} alignItems="center">
+            <Grid item xs={12} sm={8}>
+              <Typography variant="h6" sx={{ color: "#A3AED0" }}>
+                Click here to track the exact position of the International
+                Space Station
+              </Typography>
+            </Grid>
+            <Grid item xs={12} sm={4}>
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleTrackVehicle}
+                disabled={loading}
+                sx={{ backgroundColor: "#4C4E64DE" }}
+                fullWidth
+              >
+                Track now
+              </Button>
+            </Grid>
+          </Grid>
 
           {loading && <CircularProgress sx={{ mt: 2, color: "#4C4E64DE" }} />}
 
@@ -97,7 +109,7 @@ function TrackVehicle() {
           )}
         </Box>
       }
-      title={"Track the International Space Station"}
+      title={"Track the ISS"}
     />
   );
 }

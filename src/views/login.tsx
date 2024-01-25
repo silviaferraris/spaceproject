@@ -20,17 +20,9 @@ interface FormValues {
 }
 
 function LoginPage() {
-  const [showPassword, setShowPassword] = useState(false);
   const [loginError, setLoginError] = useState<string | null>(null);
 
-  const togglePasswordVisibility = () => {
-    setShowPassword((prevShowPassword) => !prevShowPassword);
-  };
-
-  const { handleSubmit, control, formState } = useForm<FormValues>();
-  const { errors } = formState;
-
-  const theme = useTheme();
+  const { handleSubmit, control } = useForm<FormValues>();
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
     console.log(data);
   };
@@ -130,7 +122,7 @@ function LoginPage() {
                 id="outlined-basic"
                 label="Password"
                 variant="filled"
-                type={showPassword ? "text" : "password"}
+                type={"password"}
                 fullWidth
                 margin="dense"
                 sx={{

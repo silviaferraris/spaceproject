@@ -3,9 +3,7 @@ import LoginPage from "./views/login";
 import Vehicles from "./views/vehicles";
 import addVehicle from "./views/addVehicle";
 import trackVehicle from "./views/trackVehicle";
-/* import { Login } from "./views/login";
-import { Login } from "./views/login";
-import { Login } from "./views/login"; */
+import NotFoundPage from "./views/404";
 
 export const router = createBrowserRouter([
   {
@@ -23,5 +21,9 @@ export const router = createBrowserRouter([
   {
     path: "/track",
     Component: trackVehicle,
+  },
+  {
+    path: "/*",
+    Component: NotFoundPage,
   },
 ]);

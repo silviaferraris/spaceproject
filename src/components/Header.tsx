@@ -1,12 +1,6 @@
 import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import { Theme } from "@mui/material/styles/createTheme";
 import { useLocation } from "react-router-dom";
-import CustomBreadcrumbs from "./CustomBreadcrumbs";
-
-interface PathItem {
-  label: string;
-  link: string;
-}
 
 interface HeaderProps {
   title: string;
@@ -16,7 +10,6 @@ function Header({ title }: HeaderProps) {
   const theme = useTheme();
   const classes = styles(theme);
   const location = useLocation();
-  const pathItems = location.pathname.split("/").filter(Boolean);
 
   return (
     <Box
@@ -31,7 +24,11 @@ function Header({ title }: HeaderProps) {
         <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
           <Typography
             component="h2"
-            sx={{ ...classes.title, ml: theme.spacing(4) }}
+            sx={{
+              ...classes.title,
+              ml: theme.spacing(4),
+              fontFamily: "Orbitron, sans-serif",
+            }}
           >
             {title}
           </Typography>
@@ -50,6 +47,7 @@ const styles = (theme: Theme) => {
       fontWeight: theme.typography.h2.fontWeight,
       lineHeight: theme.typography.h2.lineHeight,
       color: theme.palette.text.primary,
+      fontFamily: "Orbitron, sans-serif",
     },
   };
 };
