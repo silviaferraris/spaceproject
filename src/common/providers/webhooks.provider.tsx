@@ -1,7 +1,6 @@
-/* import React, { createContext, useContext, useEffect } from "react";
-import io from "socket.io-client";
-import { useAppDispatch, useAppSelector } from "../hooks/redux.hooks";
+import { createContext, useContext } from "react";
 import socketConfig from "../config/gateway.config";
+import { useAppDispatch } from "../hooks/redux.hooks";
 
 // @ts-ignore
 const socket = io(socketConfig.serverUrlSocket);
@@ -21,4 +20,3 @@ const useSocket = () => {
 };
 
 export { WebhooksProvider, useSocket };
- */

@@ -1,16 +1,9 @@
-/* import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from "@reduxjs/toolkit";
 import { authService } from "../../services/auth.service";
 export interface User {
   profile: {
     id: string;
-    createdAt: string;
-    updatedAt: string;
-    deletedAt: string;
-    isActive: boolean;
     email: string;
-    firstName: string;
-    lastName: string;
-    fullName: string;
   };
   token: string;
 }
@@ -81,4 +74,3 @@ export function logout() {
     dispatch(logout);
   };
 }
- */

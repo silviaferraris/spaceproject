@@ -1,4 +1,4 @@
-/* import axios from "axios";
+import axios from "axios";
 import { store } from "../../store/store";
 
 const instance = axios.create({
@@ -25,4 +25,3 @@ instance.interceptors.request.use(
 );
 
 export default instance;
- */

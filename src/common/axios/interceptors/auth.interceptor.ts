@@ -1,4 +1,4 @@
-/* import axios from "axios";
+import axios from "axios";
 import api from "../../config/api.config";
 import { store } from "../injectors";
 
@@ -19,4 +19,3 @@ const addAuthHeader = (config: any) => {
 authenticatedInstance.interceptors.request.use(addAuthHeader);
 
 export default authenticatedInstance;
- */

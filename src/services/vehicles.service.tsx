@@ -1,7 +1,9 @@
-const controller = "suppliers";
+const controller = "vehicles";
+import authenticatedInstance from "../common/axios/interceptors/auth.interceptor";
+import api from "../common/config/api.config";
 
 export const vehiclesService = {
-  getAllVehicles: async () => {
+  getAll: async () => {
     try {
       return await authenticatedInstance.get(`${api.baseUrl}/${controller}`);
     } catch (error: any) {
@@ -9,7 +11,7 @@ export const vehiclesService = {
       FrontendErrorHandling(error); */
     }
   },
-  createVehicle: async (vehicleData: any) => {
+  create: async (vehicleData: any) => {
     try {
       return await authenticatedInstance.post(
         `${api.baseUrl}/${controller}`,

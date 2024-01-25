@@ -1,4 +1,4 @@
-/* import { combineReducers, configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import thunk, { ThunkMiddleware } from "redux-thunk";
@@ -18,7 +18,6 @@ const rootReducer = (state: any, action: any) => {
   return appReducer(state, action);
 };
 
-// TODO Handle error and secret key
 const encryptor = encryptTransform({
   secretKey: "Super-Secret-key-jrtec",
   onError: function (error: any) {
@@ -32,16 +31,15 @@ const persistConfig: PersistConfig<any> = {
   transforms: [encryptor],
 };
 
-// TODO devtools based on env node
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 // Usa direttamente il tipo di middleware da redux-thunk
-const thunkMiddleware: ThunkMiddleware<any, any> = thunk;
+//const thunkMiddleware: ThunkMiddleware<any, any> = thunk;
 
 const store = configureStore({
   reducer: persistedReducer,
   devTools: true,
-  middleware: [thunkMiddleware],
+  //middleware: [thunkMiddleware],
 });
 
 const persistor = persistStore(store);
@@ -50,4 +48,3 @@ export { store, persistor };
 
 export type AppDispatch = typeof store.dispatch;
 export type RootState = ReturnType<typeof store.getState>;
- */
