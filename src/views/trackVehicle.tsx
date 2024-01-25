@@ -49,7 +49,7 @@ function TrackVehicle() {
         <Box
           p={2}
           bgcolor="transparent"
-          boxShadow={4}
+          boxShadow={6}
           maxWidth="400px"
           borderRadius={4}
           width="100%"

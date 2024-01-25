@@ -21,8 +21,8 @@ function AddVehicle() {
       child={
         <Box
           p={2}
-          bgcolor="white"
-          boxShadow={4}
+          bgcolor="transparent"
+          boxShadow={6}
           maxWidth="400px"
           borderRadius={4}
           width="100%"

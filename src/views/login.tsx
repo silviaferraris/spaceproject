@@ -1,3 +1,4 @@
+import React, { useState } from "react";
 import {
   Alert,
   Box,
@@ -10,7 +11,6 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { useState } from "react";
 import { Controller, SubmitHandler, useForm } from "react-hook-form";
 
 interface FormValues {
@@ -31,23 +31,20 @@ function LoginPage() {
   const { errors } = formState;
 
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
-
   const onSubmit: SubmitHandler<FormValues> = async (data) => {
-    // Effettua l'accesso qui
     console.log(data);
   };
 
   return (
     <Box
       sx={{
-        width: "100vw",
+        width: "100%",
         height: "100vh",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
         overflow: "hidden",
-        backgroundColor: "white",
+        backgroundColor: "black",
         backgroundImage: "url('/images/background.jpg')",
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -55,21 +52,21 @@ function LoginPage() {
     >
       <Box
         sx={{
-          width: isMobile ? "100%" : "400px",
+          width: "400px",
           padding: "20px",
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
           borderRadius: "10px",
-          backgroundColor: "white",
-          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
+          backgroundColor: "transparent",
+          boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.6)",
         }}
       >
         <Typography
           sx={{
             fontFamily: "DM Sans",
-            color: "#2B3674",
+            color: "#E0E5F2",
             marginBottom: "10px",
             fontSize: "36px",
             fontWeight: "bold",
@@ -90,11 +87,18 @@ function LoginPage() {
         >
           Enter your email and password to sign in!
         </Typography>
-        <Divider sx={{ width: "100%", margin: "10px 0" }} />
+        <Divider
+          sx={{ width: "100%", margin: "10px 0", backgroundColor: "#4C4E64DE" }}
+        />
         <form onSubmit={handleSubmit(onSubmit)}>
           {loginError && (
             <Box my={2}>
-              <Alert severity="error">{loginError}</Alert>
+              <Alert
+                severity="error"
+                sx={{ backgroundColor: "#FF4D4F", color: "#ffffff" }}
+              >
+                {loginError}
+              </Alert>
             </Box>
           )}
           <Controller
@@ -106,9 +110,13 @@ function LoginPage() {
                 {...field}
                 id="outlined-basic"
                 label="Email"
-                variant="outlined"
+                variant="filled"
                 fullWidth
                 margin="dense"
+                sx={{
+                  borderRadius: 8,
+                  color: "#E0E5F2",
+                }}
               />
             )}
           />
@@ -121,10 +129,14 @@ function LoginPage() {
                 {...field}
                 id="outlined-basic"
                 label="Password"
-                variant="outlined"
+                variant="filled"
                 type={showPassword ? "text" : "password"}
                 fullWidth
                 margin="dense"
+                sx={{
+                  borderRadius: 8,
+                  color: "#E0E5F2",
+                }}
               />
             )}
           />
@@ -133,6 +145,7 @@ function LoginPage() {
             alignItems="center"
             justifyContent="space-between"
             width="100%"
+            sx={{ color: "#E0E5F2" }}
           >
             <FormControlLabel
               control={
@@ -141,11 +154,16 @@ function LoginPage() {
                   name="keepLoggedIn"
                   color="primary"
                   size="small"
+                  sx={{ color: "#E0E5F2" }}
                 />
               }
               label="Keep me logged in"
             />
-            <Button variant="contained" type="submit">
+            <Button
+              variant="contained"
+              type="submit"
+              sx={{ borderRadius: 8, backgroundColor: "#4C4E64DE" }}
+            >
               Login
             </Button>
           </Box>
