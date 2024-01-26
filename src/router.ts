@@ -23,7 +23,7 @@ export const router = createBrowserRouter([
     Component: trackVehicle,
   },
   {
-    path: "/*",
+    path: "*",
     Component: NotFoundPage,
   },
 ]);

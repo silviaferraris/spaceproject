@@ -9,9 +9,40 @@ import {
   CardMedia,
 } from "@mui/material";
 import BaseLayout from "../components/BaseLayout";
-import React from "react";
+import { useEffect, useState } from "react";
+import axios from "axios";
+interface Vehicle {
+  id: number;
+  name: string;
+  mission: string;
+  image: string;
+}
 
-const vehiclesData = [
+function Vehicles() {
+  const [vehiclesData, setVehiclesData] = useState<Vehicle[]>([]);
+
+  useEffect(() => {
+    axios
+      .get("http://localhost:3005/vehicles")
+      .then((response) =>
+        setVehiclesData(
+          response.data.vehicles.map((vehicle: any, index: any) => ({
+            id: index + 1,
+            name: vehicle.name,
+            mission: vehicle.mission,
+            image: `/images/${vehicle.name
+              .toLowerCase()
+              .replace(/\s/g, "")}.jpg`,
+          }))
+        )
+      )
+      .catch((error) => console.error("Error fetching vehicles:", error));
+  }, []);
+
+  //@ts-ignore
+  console.log(vehiclesData.vehicles);
+
+  /* const vehiclesData = [
   {
     id: 1,
     name: "Voyager 1",
@@ -30,14 +61,13 @@ const vehiclesData = [
     mission: "Saturno",
     image: "/images/cassini.jpg",
   },
-];
+]; */
 
-function Vehicles() {
   return (
     <BaseLayout
       child={
         <Grid container spacing={2} mt={4} ml={4}>
-          {vehiclesData.map((vehicle) => (
+          {vehiclesData.map((vehicle: Vehicle) => (
             <Grid item key={vehicle.id} xs={12} sm={6} md={4} lg={3}>
               <Card
                 sx={{

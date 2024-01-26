@@ -2,6 +2,7 @@ import React from "react";
 import { Box, Button, TextField, Typography, Grid } from "@mui/material";
 import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import BaseLayout from "../components/BaseLayout";
+import axios from "axios"; // Assicurati di aver installato axios tramite npm o yarn
 
 interface FormValues {
   name: string;
@@ -9,11 +10,26 @@ interface FormValues {
 }
 
 function AddVehicle() {
-  const { handleSubmit, control } = useForm<FormValues>();
+  const { handleSubmit, control, reset } = useForm<FormValues>();
 
-  const onSubmit: SubmitHandler<FormValues> = (data) => {
-    // Gestisci la logica per l'inserimento del veicolo qui
-    console.log(data);
+  const onSubmit: SubmitHandler<FormValues> = async (data) => {
+    try {
+      // Effettua la richiesta al tuo backend
+      const response = await axios.post(
+        "http://localhost:3005/vehicles/create",
+        data
+      );
+
+      if (response.data.success) {
+        console.log("Vehicle added successfully");
+        // Pulisci il form dopo l'inserimento
+        reset();
+      } else {
+        console.error("Failed to add vehicle:", response.data.error);
+      }
+    } catch (error) {
+      console.error("Error adding vehicle");
+    }
   };
 
   return (
